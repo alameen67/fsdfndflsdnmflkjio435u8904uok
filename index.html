@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>0x0x0 DASH</title>
     <style>
         body {
             background: #000000;
@@ -9,16 +10,35 @@
             text-align: center;
             padding: 50px;
         }
-        .hidden {
-            display: none;
+        h1 { font-size: 3em; margin: 20px; }
+        textarea {
+            background: #111;
+            color: #0f0;
+            border: 2px solid #8a2be2;
+            padding: 15px;
+            width: 500px;
+            height: 60px;
+            font-family: monospace;
+            font-size: 16px;
+            margin: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>0x0x0 DASH SCRIPT</h1>
-    <p>This is a private script loader.</p>
-    <div class="hidden">
-        <!-- Your script URL is hidden here but accessible -->
-    </div>
+    <h1>0x0x0 DASH</h1>
+    <p>Execute in your executor:</p>
+    <textarea id="code" readonly>loadstring(game:HttpGet('https://YOUR-SITE.netlify.app/script'))()</textarea>
+    <p><small>Script hidden from browser view</small></p>
+    
+    <script>
+        const siteUrl = window.location.origin;
+        document.getElementById('code').value = `loadstring(game:HttpGet('${siteUrl}/script'))()`;
+        
+        document.getElementById('code').onclick = function() {
+            this.select();
+            navigator.clipboard.writeText(this.value);
+            alert('Copied!');
+        };
+    </script>
 </body>
 </html>
