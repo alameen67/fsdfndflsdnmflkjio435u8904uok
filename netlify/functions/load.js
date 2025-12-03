@@ -11,7 +11,7 @@ exports.handler = async function(event, context) {
         };
     }
     
-    // Serve script to Roblox
+    // YOUR ENTIRE SCRIPT HERE
     const luaScript = `-- DASH & GODMODE SCRIPT v1.0
 -- Client-side only - Execute in LocalScript
 
