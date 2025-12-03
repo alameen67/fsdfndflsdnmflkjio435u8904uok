@@ -1,14 +1,14 @@
 exports.handler = async function(event, context) {
-    // RANDOM ENDPOINT CHECK - CHANGE THIS TO SOMETHING RANDOM!
-    if (event.path !== "/xyz789abc123") {
-        return {
-            statusCode: 404,
-            body: "404 Not Found"
-        };
-    }
+    // Check for SECRET PATH - CHANGE THIS RANDOM STRING!
+    const SECRET_PATH = "dash_script_xyz123";
     
-    // YOUR ENTIRE OBFUSCATED SCRIPT HERE
-    const luaScript = `-- DASH & GODMODE SCRIPT v1.0
+    // Check if this is the secret path request
+    if (event.path.includes(SECRET_PATH) || 
+        event.rawUrl.includes(SECRET_PATH) ||
+        event.headers.referer?.includes(SECRET_PATH)) {
+        
+        // YOUR ENTIRE OBFUSCATED SCRIPT HERE
+        const luaScript = `-- DASH & GODMODE SCRIPT v1.0
 -- Client-side only - Execute in LocalScript
 
 if not game:IsLoaded() then
@@ -851,13 +851,21 @@ end)
 
 -- Start the script
 InitializeScript()`;
+        
+        return {
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'text/plain',
+                'Cache-Control': 'no-cache'
+            },
+            body: luaScript
+        };
+    }
     
+    // If not secret path, show 404
     return {
-        statusCode: 200,
-        headers: {
-            'Content-Type': 'text/plain',
-            'Cache-Control': 'no-cache'
-        },
-        body: luaScript
+        statusCode: 404,
+        headers: {'Content-Type': 'text/html'},
+        body: '<!DOCTYPE html><html><head><style>body{background:#000;color:#666;text-align:center;padding:50px;font-family:monospace;}</style></head><body><h1>404</h1><p>Page not found</p></body></html>'
     };
 };
