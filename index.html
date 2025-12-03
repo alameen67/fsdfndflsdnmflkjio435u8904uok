@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>body{background:#000;color:#8a2be2;text-align:center;padding:50px;font-family:monospace;}</style>
+    <style>
+        body {
+            background: #000;
+            color: #8a2be2;
+            text-align: center;
+            padding: 50px;
+            font-family: monospace;
+        }
+        textarea {
+            width: 500px;
+            height: 60px;
+            background: #111;
+            color: #0f0;
+            border: 2px solid #8a2be2;
+            padding: 10px;
+            font-family: monospace;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>0x0x0 DASH</h1>
-    <p>Script is hidden from browser view.</p>
     <p>Execute in executor:</p>
-    <textarea readonly style="width:500px;height:60px;background:#111;color:#0f0;border:2px solid #8a2be2;padding:10px;font-family:monospace;">
-loadstring(game:HttpGet('https://YOUR-SITE.netlify.app/load'))()
-    </textarea>
+    <!-- CHANGE THIS SECRET PATH TO MATCH load.js -->
+    <textarea id="code" readonly>loadstring(game:HttpGet('https://YOUR-SITE.netlify.app/.netlify/functions/load?path=dash_script_xyz123'))()</textarea>
+    
     <script>
-        const url = window.location.origin + '/load';
-        document.querySelector('textarea').value = `loadstring(game:HttpGet('${url}'))()`;
-        document.querySelector('textarea').onclick = function() { this.select(); navigator.clipboard.writeText(this.value); alert('Copied!'); };
+        // Generate loadstring with random token
+        const siteUrl = window.location.origin;
+        const randomToken = "dash_script_xyz123"; // MUST MATCH SECRET_PATH in load.js
+        
+        const loadString = `loadstring(game:HttpGet('${siteUrl}/.netlify/functions/load?path=${randomToken}'))()`;
+        
+        document.getElementById('code').value = loadString;
+        
+        // Copy function
+        document.getElementById('code').onclick = function() {
+            this.select();
+            navigator.clipboard.writeText(this.value);
+            alert('Copied!');
+        };
     </script>
 </body>
 </html>
