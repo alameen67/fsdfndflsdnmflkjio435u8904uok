@@ -1,44 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>0x0x0 DASH</title>
-    <style>
-        body {
-            background: #000000;
-            color: #8a2be2;
-            font-family: monospace;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 { font-size: 3em; margin: 20px; }
-        textarea {
-            background: #111;
-            color: #0f0;
-            border: 2px solid #8a2be2;
-            padding: 15px;
-            width: 500px;
-            height: 60px;
-            font-family: monospace;
-            font-size: 16px;
-            margin: 20px;
-        }
-    </style>
+    <style>body{background:#000;color:#8a2be2;text-align:center;padding:50px;font-family:monospace;}</style>
 </head>
 <body>
     <h1>0x0x0 DASH</h1>
-    <p>Execute in your executor:</p>
-    <textarea id="code" readonly>loadstring(game:HttpGet('https://YOUR-SITE.netlify.app/script'))()</textarea>
-    <p><small>Script hidden from browser view</small></p>
-    
+    <p>Script is hidden from browser view.</p>
+    <p>Execute in executor:</p>
+    <textarea readonly style="width:500px;height:60px;background:#111;color:#0f0;border:2px solid #8a2be2;padding:10px;font-family:monospace;">
+loadstring(game:HttpGet('https://YOUR-SITE.netlify.app/load'))()
+    </textarea>
     <script>
-        const siteUrl = window.location.origin;
-        document.getElementById('code').value = `loadstring(game:HttpGet('${siteUrl}/script'))()`;
-        
-        document.getElementById('code').onclick = function() {
-            this.select();
-            navigator.clipboard.writeText(this.value);
-            alert('Copied!');
-        };
+        const url = window.location.origin + '/load';
+        document.querySelector('textarea').value = `loadstring(game:HttpGet('${url}'))()`;
+        document.querySelector('textarea').onclick = function() { this.select(); navigator.clipboard.writeText(this.value); alert('Copied!'); };
     </script>
 </body>
 </html>
