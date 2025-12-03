@@ -3,7 +3,7 @@
   functions = "netlify/functions"
 
 [[redirects]]
-  from = "/get-script"
+  from = "/dash"
   to = "/.netlify/functions/load"
   status = 200
   force = true
