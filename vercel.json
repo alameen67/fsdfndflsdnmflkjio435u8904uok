@@ -1,1 +1,5 @@
-
+{
+  "rewrites": [
+    { "source": "/load", "destination": "/api/load" }
+  ]
+}
