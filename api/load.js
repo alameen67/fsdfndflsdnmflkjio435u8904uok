@@ -373,7 +373,7 @@ local function executeStealScript()
                             local frame = surfaceGui:FindFirstChild("Frame")
                             if frame then
                                 local textLabel = frame:FindFirstChild("TextLabel")
-                                if textLabel and string.find(string.lower(textLabel.Text), "creedfullyud's base") then
+                                if textLabel and string.find(string.lower(textLabel.Text), "Weelviltff_555's base") then
                                     local cashPad = plot:FindFirstChild("CashPad")
                                     if cashPad and #cashPad:GetChildren() >= 2 then
                                         return plot
